@@ -26,7 +26,9 @@ set grid
 array floors[N]
 do for [ i = 1 : N ] { floors[i] = ( substr(ARGV[i],17,27) eq 'A4C138E4544' ) ? 2 : 1 }
 
-plot for [i=1:N] ARGV[ i ] every 60 using (timecolumn(1)+3600*9):2 with points pt 3+(i*2) ps 1.5 notitle "Temp.\\si{\\celsius}" \
-     , for [i=1:N] ARGV[ i ] using (timecolumn(1)+3600*9):2 smooth bezier lw 5 title sprintf("%dF \\si{\\celsius}", floors[i])
+plot for [i=1:N] ARGV[ i ] every 60 using (timecolumn(1)+3600*9):2 with points pt 3+(i*2) ps 1.5 lt i notitle "Temp.\\si{\\celsius}" \
+     , for [i=1:N] ARGV[ i ] using (timecolumn(1)+3600*9):2 smooth bezier lw 5 lt i title sprintf("%dF \\si{\\celsius}", floors[i])
 
-plot for [i=1:N] ARGV[i] using (timecolumn(1)+3600*9):3 with linespoints pt i title sprintf("%dF R.H.\\si{\\percent}", floors[i])
+plot for [i=1:N] ARGV[i] using (timecolumn(1)+3600*9):3 with linespoints pt i lt i + N title sprintf("%dF R.H.\\si{\\percent}", floors[i])
+
+

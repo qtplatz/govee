@@ -1,11 +1,11 @@
+YEAR_MONTH := $(shell date +%Y-%m)
 
-#all: tocopherol+vk1.pdf tocopherol+vk1-2.pdf ARA+C20.pdf ARA-C20.pdf
-DATAFILES = ../data/gvh507x_A4C138258E2F-2022-06.txt \
-	    ../data/gvh507x_A4C138E4544D-2022-06.txt
+DATAFILES = ../data/gvh507x_A4C138258E2F-${YEAR_MONTH}.txt \
+	    ../data/gvh507x_A4C138E4544D-${YEAR_MONTH}.txt
 
-all:    gobee-log.pdf
+all:    gobee-log-${YEAR_MONTH}.pdf
 
-gobee-log.tex: gobee-log.gnuplot ${DATAFILES} sync
+gobee-log-${YEAR_MONTH}.tex: gobee-log.gnuplot ${DATAFILES} sync
 	gnuplot -c $< $@  ${DATAFILES}
 
 sync:
