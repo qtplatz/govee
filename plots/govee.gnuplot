@@ -18,16 +18,21 @@ set xzeroaxis
 set yzeroaxis
 
 set xdata time
-set format x "%m-%d %H:%M"
-set xtics rotate by 90 offset 0,-4.5
+#set format x "%m-%d %H:%M"
+set format x "%m/%d %H:%M"
+set xtics rotate by 90 offset 0,-4.5 #format "%D\n%R" time
 
 set grid
+set style arrow 8 head size character 2,20 ls 4 lw 4 lc rgb "red"
 
 array floors[N]
 do for [ i = 1 : N ] { floors[i] = ( substr(word(ARGV[i],1),17,27) eq 'A4C138E4544' ) ? 2 : 1 }
 
-plot for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):2 smooth bezier lw 5 lt i title sprintf("%dF \\si{\\celsius}", floors[i])
+set arrow 1 as 8 from '2022-07-01 00:00:00', graph 0 to '2022-07-01 00:00:00', graph 1 nohead
+
+plot 35 lc "red" notitle \
+     , 30 lc "red" notitle \
+     , 25 lc "red" notitle \
+     , for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):2 smooth bezier lw 5 lt i title sprintf("%dF \\si{\\celsius}", floors[i])
 
 plot for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):3 smooth bezier lw 5 lt i + N title sprintf("%dF R.H.\\si{\\percent}", floors[i])
-
-
