@@ -9,7 +9,7 @@ FILES = "'../data/gvh507x_A4C138258E2F-${YEAR_MONTH_PREV}.txt' '../data/gvh507x_
 
 all:    govee-${YEAR_MONTH}.pdf govee-${YEAR_MONTH_PREV}-${YEAR_MONTH}.pdf
 
-govee-${YEAR_MONTH}.tex: govee-log.gnuplot ${DATAFILES} sync
+govee-${YEAR_MONTH}.tex: govee-single.gnuplot ${DATAFILES} sync
 	gnuplot -c $< $@  ${DATAFILES}
 
 govee-${YEAR_MONTH_PREV}-${YEAR_MONTH}.tex: govee.gnuplot sync
