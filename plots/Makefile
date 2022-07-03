@@ -16,7 +16,7 @@ sync:
 	${MAKE} -C ../
 
 clean:
-	-rm -rf *-eps-converted-to.pdf *-inc.eps *.tex *.eps *~ *.log *.aux
+	-rm -rf *-eps-converted-to.pdf *-inc.eps *.tex *.eps *~ *.log *.aux \#*
 
 veryclean:
 	-rm -rf *-eps-converted-to.pdf *-inc.eps *.tex *.eps *~ *.log *.aux *.pdf
