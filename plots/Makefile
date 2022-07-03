@@ -7,15 +7,7 @@ DATAFILES = ../data/gvh507x_A4C138258E2F-${YEAR_MONTH}.txt \
 FILES = "'../data/gvh507x_A4C138258E2F-${YEAR_MONTH_PREV}.txt' '../data/gvh507x_A4C138258E2F-${YEAR_MONTH}.txt'" \
 	"'../data/gvh507x_A4C138E4544D-${YEAR_MONTH_PREV}.txt' '../data/gvh507x_A4C138E4544D-${YEAR_MONTH}.txt'"
 
-all:    govee-${YEAR_MONTH}.pdf govee-${YEAR_MONTH_PREV}-${YEAR_MONTH}.pdf govee-today.pdf
-
-today: govee-today.pdf
-
-govee-today.tex: govee-today.gnuplot ${DATAFILES} sync
-	gnuplot -c $< $@  ${FILES}
-
-govee-${YEAR_MONTH}.tex: govee-month.gnuplot ${DATAFILES} sync
-	gnuplot -c $< $@  ${DATAFILES}
+all:    govee-${YEAR_MONTH}.pdf govee-${YEAR_MONTH_PREV}-${YEAR_MONTH}.pdf
 
 govee-${YEAR_MONTH_PREV}-${YEAR_MONTH}.tex: govee.gnuplot sync
 	gnuplot -c $< $@  ${FILES}
