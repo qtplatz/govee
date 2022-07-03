@@ -52,11 +52,13 @@ plot 35 lc "coral" notitle \
 
 set ylabel "R.H. (\\si{\\percent})"
 
-plot for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):3 with linespoints ps 0.5 lt i + N title sprintf("%s R.H.\\si{\\percent}", location[i])
+plot for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):3 smooth bezier lw 2 lt i + N title sprintf("%s R.H.\\si{\\percent}", location[i])
+#plot for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):3 with linespoints ps 0.5 lt i + N title sprintf("%s R.H.\\si{\\percent}", location[i])
 
 set ylabel "A.H. (\\si{\\gram\\per\\cubic\\meter})"
 
-plot for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):(AH($3,$2)) with linespoints ps 0.5 lt i + N title sprintf("%s A.H.", location[i])
+plot for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):(AH($3,$2)) smooth bezier lw 2 lt i + N title sprintf("%s A.H.", location[i])
+#plot for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):(AH($3,$2)) with linespoints ps 0.5 lt i + N title sprintf("%s A.H.", location[i])
 
 
 set xrange[tm_str_week_befor(2):tm_str_month_befor(-1)]
@@ -78,8 +80,8 @@ plot 35 lc "coral" notitle \
 
 set ylabel "R.H. (\\si{\\percent})"
 
-plot for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):3 smooth bezier lw 5 lt i + N title sprintf("%s R.H.\\si{\\percent}", location[i])
+plot for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):3 smooth bezier lw 2 lt i + N title sprintf("%s R.H.\\si{\\percent}", location[i])
 
 set ylabel "A.H. (\\si{\\gram\\per\\cubic\\meter})"
 
-plot for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):(AH($3,$2)) smooth bezier lw 5 lt i + N title sprintf("%s A.H.", location[i])
+plot for [i=1:N] '< cat ' . ARGV[i] using (timecolumn(1)+3600*9):(AH($3,$2)) smooth bezier lw 2 lt i + N title sprintf("%s A.H.", location[i])
